@@ -1,5 +1,8 @@
+[![Compiling and Testing](https://github.com/zenitheesc/zenith-template-cpp/actions/workflows/compiling-testing.yml/badge.svg)](https://github.com/zenitheesc/zenith-template-cpp/actions/workflows/compiling-testing.yml)
+
 <h1 align="center" style="color:white; background-color:black">[PROJECT NAME]</h1>
 <h4 align="center">[insert *brief* project description]</h4>
+
 
 <p align="center">
 	<a href="http://zenith.eesc.usp.br/">
