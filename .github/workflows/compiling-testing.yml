@@ -24,7 +24,7 @@ jobs:
     - uses: andstor/file-existence-action@v1
       with:
         files: "package.json, LICENSE, README.md"
-      if: steps.check_files.outputs.files_exists == 'true'
+    - if: steps.check_files.outputs.files_exists == 'true'
       
     - name: Get Conan
     # You may pin to the exact commit or the version.
