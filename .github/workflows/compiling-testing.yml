@@ -25,9 +25,10 @@ jobs:
       with:
         files: "package.json, LICENSE, README.md"
         
-      if: steps.check_files.outputs.files_exists == 'true'
+      
       
     - name: Get Conan
+      if: steps.check_files.outputs.files_exists == 'true'
     # You may pin to the exact commit or the version.
     # uses: turtlebrowser/get-conan@4dc7e6dd45c8b1e02e909979d7cfc5ebba6ddbe2
       uses: turtlebrowser/get-conan@v1.0  
@@ -39,20 +40,24 @@ jobs:
     - run: conan profile update settings.compiler.libcxx=libstdc++11 default
     
     - name: Using Conan
+      if: steps.check_files.outputs.files_exists == 'true'
     # You may pin to the exact commit or the version.
     # uses: turtlebrowser/get-conan@4dc7e6dd45c8b1e02e909979d7cfc5ebba6ddbe2
       run: conan install -if ${{github.workspace}}/build ${{github.workspace}}
 
     - name: Configure CMake
+      if: steps.check_files.outputs.files_exists == 'true'
       # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only required if you are using a single-configuration generator such as make.
       # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
       run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
 
     - name: Build
+      if: steps.check_files.outputs.files_exists == 'true'
       # Build your program with the given configuration
       run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
 
     - name: Test
+      if: steps.check_files.outputs.files_exists == 'true'
       # Execute tests defined by the CMake configuration.  
       # See https://cmake.org/cmake/help/latest/manual/ctest.1.html for more detail
       run: make -C ${{github.workspace}}/build GTEST_COLOR=1 ARGS="--rerun-failed --output-on-failure" test
